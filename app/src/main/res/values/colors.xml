@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--================ Colores de Estilo ===============-->
+
+    <color name="colorPrimary">#c62828</color>
+    <color name="colorPrimaryDark">#B71C1C</color> <!-- #ab2222 -->
+    <color name="colorAccent">#e53935</color> <!-- #e4552d -->
+    <color name="colorBackground">#ffe2e1</color> <!-- #ffe2e1 - Alternative: #f7eae9 -->
+    <color name="colorText">#212121</color> <!-- #767676 -->
+    <color name="colorSecondaryText">#757575</color> <!-- #a1a1a1 -->
+    <color name="colorButtonText">#ffffff</color> <!-- #ffebab -->
+    <color name="colorButtonNormal">#c62828</color> <!-- #ffebab -->
+    <color name="colorControlNormal">#c62828</color> <!-- #a9a9a9 -->
+
+    <!--================ Colores de Estilo ===============-->
+
+    <!--=========== Colores de borde de imagen ===========-->
+
+    <color name="image_border_start">#40990000</color>
+    <color name="image_border_end">#FF660000</color>
+    <color name="image_border_center">#FFFF3333</color>
+
+    <!--=========== Colores de borde de imagen ===========-->
+</resources>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ort.smartacc">
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!--
+             <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDeabxqwXGhrhHwnyw6R1RSl_C0X-SQ82U" />
+        -->
+        <!-- Para debug usar la que está en @string/google_maps_key -->
+        <!-- CREO QUE ESTO ESTA ARREGLADO :) -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.SearchResultsActivity"
+            android:label="@string/title_activity_search_result"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.RecetaActivity"
+            android:label="@string/title_activity_receta"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.CreditsActivity"
+            android:label="@string/title_activity_creditos"
+            android:screenOrientation="portrait"/>
+
+        <service
+            android:name=".net.DbBridgeService"
+            android:exported="false" />
+
+        <activity android:name=".activity.SugerenciasActivity"
+            android:label="@string/title_activity_sugerencias"
+            android:screenOrientation="portrait"/>
+    </application>
+
+</manifest>

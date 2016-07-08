@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">SmarTACC</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error">Ocurrió un error</string>
+    <string name="formato_ingrediente_sin_cantidad">\u2022 %1$s de %2$s</string>
+    <string name="formato_ingrediente_con_cantidad">\u2022 %1$s %2$s de %3$s</string>
+
+    <string name="description_foto">Foto de la receta</string>
+    <string name="receta_titulo_ingredientes">Ingredientes:</string>
+    <string name="receta_titulo_categorias">Categorías:</string>
+    <string name="receta_titulo_preparacion">Preparación:</string>
+    <string name="mapa_info_direccion">Dirección: %1$s</string>
+    <string name="mapa_info_descipcion">Descripción: %1$s</string>
+    <string name="error_load">No se pudo acceder a la base de datos.\nVerifique su conexión a internet.</string>
+    <string name="loading">Actualizando base de datos, aguarde por favor</string>
+    <string name="error404">Error 404</string>
+    <string name="title_activity_search_result">Resultados</string>
+    <string name="title_activity_receta">Receta</string>
+    <string name="title_activity_creditos">Créditos y sugerencias</string>
+
+    <string name="title_action_rate">¡Déjanos una reseña!</string>
+    <string name="title_action_creditos">Créditos</string>
+
+    <string name="rate_title">Califica la Aplicación!</string>
+    <string name="rate_explanation">¿Estás feliz con SmarTACC? ¿Consideras que puede ser mejor? ¡Califica la aplicación y escríbenos una reseña!</string>
+    <string name="rate_now">Sí!</string>
+    <string name="rate_later">Más tarde</string>
+    <string name="rate_never">No</string>
+    <string name="txtEmailSugerencia">E-mail</string>
+    <string name="txtSugerencia">Sugerencia</string>
+    <string name="btnEnviarSugerencia">Enviar</string>
+    <string name="title_activity_sugerencias">Sugerencia</string>
+
+</resources>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView2" >
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Aplicación desarrollada por alumnos de la Escuela ORT Argentina"
+                android:id="@+id/lblCreditsTitle"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:layout_margin="10dp"
+                android:textSize="25dp"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Programación"
+                android:id="@+id/lblProgramacion"
+                android:textAlignment="center"
+                android:textSize="21dp"
+                android:textIsSelectable="false"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="2dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Santiago Aranguri "
+                android:id="@+id/lblSanti"
+                android:textAlignment="center"
+                android:textSize="17dp"
+                android:textIsSelectable="false"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Tobias Carreira "
+                android:id="@+id/lblTobi"
+                android:textAlignment="center"
+                android:textSize="17dp"
+                android:textIsSelectable="false"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Pablo Kvitca "
+                android:id="@+id/lblPablo"
+                android:textAlignment="center"
+                android:textSize="17dp"
+                android:textIsSelectable="false"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Vladimir Pomsztein"
+                android:id="@+id/lblVladi"
+                android:textAlignment="center"
+                android:textSize="17dp"
+                android:textIsSelectable="false"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Diseño:"
+                android:id="@+id/lblDiseno"
+                android:textAlignment="center"
+                android:textSize="21dp"
+                android:textIsSelectable="false"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="2dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Natasha Ritzer"
+                android:id="@+id/lblNati"
+                android:textAlignment="center"
+                android:textSize="17dp"
+                android:textIsSelectable="false"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Aporte de Datos:"
+                android:id="@+id/lblAporteDatos"
+                android:textAlignment="center"
+                android:textSize="21dp"
+                android:textIsSelectable="false"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="2dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Melissa Chab"
+                android:id="@+id/lblMelissaChab"
+                android:textAlignment="center"
+                android:textSize="17dp"
+                android:textIsSelectable="false"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Alumnos de la Escuela ORT Argentina"
+                android:id="@+id/lblAlumnos"
+                android:textAlignment="center"
+                android:textSize="17dp"
+                android:textIsSelectable="false"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:layout_width="100sp"
+                    android:layout_height="93sp"
+                    android:id="@+id/imgTIC"
+                    android:src="@drawable/ic_tic"
+                    android:layout_gravity="center_vertical" />
+
+                <ImageView
+                    android:layout_width="130sp"
+                    android:layout_height="74sp"
+                    android:id="@+id/imgORT"
+                    android:src="@drawable/ic_ort"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center_vertical" />
+
+                <ImageView
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    android:id="@+id/imgMedios"
+                    android:src="@drawable/ic_medios"
+                    android:layout_gravity="center_vertical" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Escribir sugerencia"
+                android:id="@+id/btnSugerencias"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="25dp"
+                android:singleLine="false"
+                android:textSize="15dp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/colorButtonText"
+                android:background="@drawable/button"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

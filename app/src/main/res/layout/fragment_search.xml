@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="311dp"
+        android:layout_weight="0.86"
+        android:layout_marginTop="10dp">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical" android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="1"
+                android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Por nombre"
+                android:id="@+id/lblNombre"
+                android:textSize="20dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp" />
+
+                <EditText
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/txtRecipeName"
+                android:inputType="textPersonName"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_margin="0dp"
+                android:editable="false"
+                android:textSize="20dp"
+                android:hint=""/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Por categoría"
+                android:id="@+id/lblCategorias"
+                android:textSize="20dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp" />
+
+            <com.ort.smartacc.MultiSpinner
+                android:layout_width="312dp"
+                android:layout_height="40dp"
+                android:id="@+id/sprCategories"
+                android:layout_marginRight="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_gravity="center_horizontal|top" />
+
+            <!--<FrameLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.06">-->
+
+                <!--<ExpandableListView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="200dp"-->
+                    <!--android:id="@+id/elvCategories"-->
+                    <!--android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:layout_weight="0.05"-->
+                    <!--android:childDivider="#000000"-->
+                    <!--android:divider="#000000"-->
+                    <!--android:dividerHeight="0.5dp"-->
+                    <!--/>-->
+            <!--</FrameLayout>-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Por ingredientes"
+                android:id="@+id/lblIngredientes"
+                android:textSize="20dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp" />
+
+            <com.ort.smartacc.MultiSpinner
+                android:layout_width="312dp"
+                android:layout_height="40dp"
+                android:id="@+id/sprIngredients"
+                android:layout_marginRight="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_marginBottom="25dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buscar"
+                android:id="@+id/btnSearch"
+                android:layout_gravity="center_horizontal"
+                android:textSize="15dp"
+                android:textColor="@color/colorButtonText"
+                android:background="@drawable/button"/>
+            <!--<FrameLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.06" >-->
+
+                <!--<ExpandableListView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="200dp"-->
+                    <!--android:id="@+id/elvIngredients"-->
+                    <!--android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:layout_weight="0.05"-->
+                    <!--android:childDivider="#000000"-->
+                    <!--android:divider="#000000"-->
+                    <!--android:dividerHeight="0.5dp" />-->
+            <!--</FrameLayout>-->
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+</LinearLayout>
