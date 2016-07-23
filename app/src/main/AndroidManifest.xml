@@ -16,13 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--
-             <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDeabxqwXGhrhHwnyw6R1RSl_C0X-SQ82U" />
-        -->
-        <!-- Para debug usar la que está en @string/google_maps_key -->
-        <!-- CREO QUE ESTO ESTA ARREGLADO :) -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
