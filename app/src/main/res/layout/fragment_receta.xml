@@ -28,13 +28,19 @@
             android:layout_marginRight="10dp"
             android:contentDescription="@string/description_foto"
             /><!-- style="@style/BorderImageView" -->
+        <include
+            layout="@layout/component_disclaimer"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"/>
         <TextView
             android:textSize="@dimen/receta_subtitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/receta_titulo_ingredientes"
+            android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp" />
         <LinearLayout
             android:id="@+id/receta_list_ingredientes"

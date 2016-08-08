@@ -31,5 +31,7 @@
     <string name="txtSugerencia">Sugerencia</string>
     <string name="btnEnviarSugerencia">Enviar</string>
     <string name="title_activity_sugerencias">Sugerencia</string>
+    <string name="disclaimer">RECORDA UTILIZAR SIEMPRE PRODUCTOS CERTIFICADOS COMO ALIMENTOS LIBRES DE GLUTEN (ALG).</string>
+    <string name="description_sintacc">Sin TACC</string>
 
 </resources>
