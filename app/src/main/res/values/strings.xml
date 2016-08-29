@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">SmarTACC</string>
+    <string name="sync_adapter_name">App Data</string>
+    <string name="content_autority">com.ort.smartacc.provider</string>
+    <string name="account_type">com.ort.smartacc.account</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="error">Ocurrió un error</string>
@@ -34,4 +37,5 @@
     <string name="disclaimer">RECORDA UTILIZAR SIEMPRE PRODUCTOS CERTIFICADOS COMO ALIMENTOS LIBRES DE GLUTEN (ALG).</string>
     <string name="description_sintacc">Sin TACC</string>
 
+    <string name="default_user">SmarTACC</string>
 </resources>

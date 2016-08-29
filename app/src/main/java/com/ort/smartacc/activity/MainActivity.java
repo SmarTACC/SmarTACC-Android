@@ -1,7 +1,10 @@
 package com.ort.smartacc.activity;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -36,6 +39,22 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading);
+
+        String autority = getString(R.string.content_autority);
+        String userName = getString(R.string.default_user);
+        String accountType = getString(R.string.account_type);
+
+        Account newAccount = new Account(userName, accountType);
+        AccountManager accountManager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+        if(accountManager.addAccountExplicitly(newAccount, null, null)) {
+            ContentResolver.setIsSyncable(newAccount, autority, 1);
+            ContentResolver.setSyncAutomatically(newAccount, autority, true);
+            ContentResolver.addPeriodicSync(
+                    newAccount,
+                    autority,
+                    Bundle.EMPTY,
+                    60*60*24                                        );
+        }
 
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 new ServiceReadyReceiver(),
