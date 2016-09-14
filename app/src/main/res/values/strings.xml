@@ -35,6 +35,7 @@
     <string name="btnEnviarSugerencia">Enviar</string>
     <string name="title_activity_sugerencias">Sugerencia</string>
     <string name="disclaimer">RECORDA UTILIZAR SIEMPRE PRODUCTOS CERTIFICADOS COMO ALIMENTOS LIBRES DE GLUTEN (ALG).</string>
+    <string name="disclaimer_map">Importante! Este local afirma ser libre de gluten, pero no ha sido verificado por ninguna organización conocida.</string>
     <string name="description_sintacc">Sin TACC</string>
 
     <string name="default_user">SmarTACC</string>
