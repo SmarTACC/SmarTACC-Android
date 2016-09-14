@@ -12,9 +12,12 @@ public class Util {
     /**
      * Dirección básica del servidor.
      */
-    public static final String SERVER_URL = "http://www.ort.edu.ar:8018/";
-
-    public final static int DB_VERSION = 12;
+    public static final String API_URL = "http://smartacc.proyectosort.edu.ar/api/";
+    //TODO hacer una función que te devuelva el string completo pasandole el id de imagen
+    public static final String IMAGES_URL = "http://smartacc.proyectosort.edu.ar/img/recipes/";
+    public static final String TOKEN_URL = "http://smartacc.proyectosort.edu.ar";
+    public static final String SUGGEST_URL = "http://smartacc.proyectosort.edu.ar/suggestion";
+    public static final String OLD_SERVER_URL = "http://www.ort.edu.ar:8018/";
 
     public static final String SERVICE_BROADCAST_ACTION = "com.ort.smartacc.SERVICE_READY_BROADCAST";
     public static final String SERVICE_STATUS = "com.ort.smartacc.SERVICE_READY_STATUS";

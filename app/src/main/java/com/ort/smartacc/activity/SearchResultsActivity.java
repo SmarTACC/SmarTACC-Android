@@ -29,10 +29,10 @@ public class SearchResultsActivity extends AppCompatActivity
     }
 
     @Override
-    public void onRecetaSelected(int id) {
+    public void onRecetaSelected(long id) {
         Intent intent = new Intent(this, RecetaActivity.class);
         Bundle args = new Bundle();
-        args.putInt(RecetaFragment.KEY_ID_RECETA, id);
+        args.putLong(RecetaFragment.KEY_ID_RECETA, id);
         intent.putExtra(RecetaActivity.ARG_EXTRAS, args);
         startActivity(intent);
     }

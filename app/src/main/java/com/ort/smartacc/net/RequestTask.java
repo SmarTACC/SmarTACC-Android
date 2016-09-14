@@ -10,12 +10,15 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.CookieManager;
+import java.net.CookieStore;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
  * AsyncTask usado para mandar requerimientos HTTP.
  */
+//TODO eliminar?
 public class RequestTask extends AsyncTask<String, Void, HttpResponse> {
     Context context;
     OnReadyCallback callback;

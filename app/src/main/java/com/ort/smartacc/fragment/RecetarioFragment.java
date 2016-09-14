@@ -1,8 +1,6 @@
 package com.ort.smartacc.fragment;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +10,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.ort.smartacc.R;
-import com.ort.smartacc.adapter.RecetarioAdapter;
 import com.ort.smartacc.SearchResult;
-import com.ort.smartacc.Util;
 import com.ort.smartacc.activity.RecetaActivity;
-import com.ort.smartacc.db.SQLiteHelper;
+import com.ort.smartacc.adapter.RecetarioAdapter;
+import com.ort.smartacc.data.RecipesAgent;
+import com.ort.smartacc.data.model.Recipe;
 
 import java.util.ArrayList;
 
@@ -45,32 +43,14 @@ public class RecetarioFragment extends android.support.v4.app.Fragment{
     }
 
     public void llenarRecetario(){
-
-        String query = "SELECT IDRecetas, COUNT(*) AS cant, Nombre, Imagen FROM recetas GROUP BY IDRecetas ORDER BY Nombre";
-
-        //Hago el query:
-
-        //Hago un request al servidor para conseguir la version de la DB
-
-        SQLiteDatabase db = new SQLiteHelper(getActivity(), Util.DB_VERSION).getReadableDatabase();
-
         ArrayList<SearchResult> results = new ArrayList<>();
-        Cursor queryResult = null;
-        if(db != null) {
-            queryResult = db.rawQuery(query, new String[0]);
+        RecipesAgent recipesAgent = new RecipesAgent(getContext());
+
+        for(Recipe recipe:recipesAgent.getRecipes()) {
+            //TODO: cmon.. esto es feo
+            results.add(new SearchResult((int) recipe.id, recipe.name));
         }
-        if (queryResult != null) {
-            if(queryResult.moveToFirst())
-            {
-                do{
-                    String idRecetaActual = queryResult.getString(queryResult.getColumnIndex("IDRecetas"));
-                    String nombreRecetaActual = queryResult.getString(queryResult.getColumnIndex("Nombre"));
-                    String imagenRecetaActual = queryResult.getString(queryResult.getColumnIndex("Imagen"));
-                    results.add(new SearchResult(Integer.parseInt(idRecetaActual), nombreRecetaActual, imagenRecetaActual));
-                } while(queryResult.moveToNext());
-            }
-            queryResult.close();
-        }
+
         //Finalmente, cargo el ListView
         RecetarioAdapter recetarioAdapter = new RecetarioAdapter(getActivity(), results.toArray(new SearchResult[results.size()]), (TextView) view.findViewById(R.id.lblCurrentSection));
         listView.setAdapter(recetarioAdapter);
@@ -88,7 +68,7 @@ public class RecetarioFragment extends android.support.v4.app.Fragment{
         //Toast.makeText(this.getActivity(), "Selected: " + selectedRecipe.getId(), Toast.LENGTH_SHORT).show(); //Para probar que funcione el evento
         Intent intent = new Intent(getActivity(), RecetaActivity.class);
         Bundle args = new Bundle();
-        args.putInt(RecetaFragment.KEY_ID_RECETA, selectedRecipe.getId());
+        args.putLong(RecetaFragment.KEY_ID_RECETA, selectedRecipe.getId());
         intent.putExtra(RecetaActivity.ARG_EXTRAS, args);
         startActivity(intent);
     }

@@ -1,9 +1,11 @@
-package com.ort.smartacc;
+package com.ort.smartacc.net;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+
+import com.ort.smartacc.net.SyncAdapter;
 
 public class SyncAdapterService extends Service {
 

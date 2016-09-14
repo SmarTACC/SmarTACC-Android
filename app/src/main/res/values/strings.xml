@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SmarTACC</string>
     <string name="sync_adapter_name">App Data</string>
-    <string name="content_autority">com.ort.smartacc.provider</string>
+    <string name="content_authority">com.ort.smartacc.provider</string>
     <string name="account_type">com.ort.smartacc.account</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>

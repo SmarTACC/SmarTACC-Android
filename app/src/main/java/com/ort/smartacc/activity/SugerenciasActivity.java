@@ -83,7 +83,7 @@ public class SugerenciasActivity extends AppCompatActivity {
         dialog.setMessage("Por favor espere");
         dialog.show();
 
-        new RequestTask(this,Util.SERVER_URL + "smartacc/addSugerencia.php", "POST", "email=" + email + "&sugerencia=" + sugerencia, new RequestTask.OnReadyCallback() {
+        new RequestTask(this,Util.OLD_SERVER_URL + "smartacc/addSugerencia.php", "POST", "email=" + email + "&sugerencia=" + sugerencia, new RequestTask.OnReadyCallback() {
             @Override
             public void onReady(HttpResponse response) {
                 dialog.dismiss();

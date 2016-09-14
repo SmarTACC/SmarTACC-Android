@@ -1,4 +1,4 @@
-package com.ort.smartacc;
+package com.ort.smartacc.net;
 
 import android.accounts.AbstractAccountAuthenticator;
 import android.accounts.Account;

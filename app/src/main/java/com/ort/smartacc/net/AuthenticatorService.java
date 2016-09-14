@@ -1,4 +1,4 @@
-package com.ort.smartacc;
+package com.ort.smartacc.net;
 
 import android.app.Service;
 import android.content.Intent;
