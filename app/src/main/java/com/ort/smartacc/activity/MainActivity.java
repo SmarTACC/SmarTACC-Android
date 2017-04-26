@@ -1,28 +1,33 @@
 package com.ort.smartacc.activity;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.android.common.view.SlidingTabLayout;
-import com.ort.smartacc.adapter.CustomPagerAdapter;
 import com.ort.smartacc.R;
-import com.ort.smartacc.fragment.SearchFragment;
 import com.ort.smartacc.SearchResult;
-import com.ort.smartacc.fragment.SearchResultsFragment;
 import com.ort.smartacc.Util;
+import com.ort.smartacc.adapter.CustomPagerAdapter;
+import com.ort.smartacc.fragment.SearchFragment;
+import com.ort.smartacc.fragment.SearchResultsFragment;
 import com.ort.smartacc.net.DbBridgeService;
 
 import java.util.ArrayList;
@@ -32,17 +37,32 @@ import im.delight.apprater.AppRater;
 public class MainActivity extends AppCompatActivity
         implements SearchFragment.OnSearchInteractionCallback {
 
+    private static final String SERVICE_PREF = "service_pref";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loading);
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                new ServiceReadyReceiver(),
-                new IntentFilter(Util.SERVICE_BROADCAST_ACTION));
-        startService(new Intent(this, DbBridgeService.class));
+        SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
+        Log.e("Main", preferences.getBoolean(SERVICE_PREF, false)+"");
+        if(!preferences.getBoolean(SERVICE_PREF, false)) {
+            LocalBroadcastManager.getInstance(this).registerReceiver(
+                    new ServiceReadyReceiver(),
+                    new IntentFilter(Util.SERVICE_BROADCAST_ACTION));
+            startService(new Intent(this, DbBridgeService.class));
+        } else {
+            onReady();
+        }
     }
+
     private void onReady() {
+        SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(SERVICE_PREF, true);
+        editor.apply();
+
+        prepareSync();
         setContentView(R.layout.activity_main);
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
         if (viewPager != null) {
@@ -117,6 +137,25 @@ public class MainActivity extends AppCompatActivity
         } catch (ActivityNotFoundException e) {
             startActivity(new Intent(Intent.ACTION_VIEW,
                     Uri.parse("http://play.google.com/store/apps/details?id=" + getApplication().getPackageName())));
+        }
+    }
+
+    private void prepareSync() {
+        String authority = getString(R.string.content_authority);
+        String userName = getString(R.string.default_user);
+        String accountType = getString(R.string.account_type);
+
+        Account newAccount = new Account(userName, accountType);
+        AccountManager accountManager = (AccountManager) getSystemService(ACCOUNT_SERVICE);
+        if(accountManager.addAccountExplicitly(newAccount, null, null)) {
+            ContentResolver.setIsSyncable(newAccount, authority, 1);
+            ContentResolver.setSyncAutomatically(newAccount, authority, true);
+
+            ContentResolver.addPeriodicSync(
+                    newAccount,
+                    authority,
+                    Bundle.EMPTY,
+                    60*60*24);
         }
     }
 

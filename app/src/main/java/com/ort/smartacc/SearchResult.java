@@ -5,20 +5,18 @@ import android.os.Parcelable;
 
 public class SearchResult implements Parcelable {
 
-    int id;
+    long id;
     String name;
-    String image;
 
-    public SearchResult(int id, String name, String image) {
+    //TODO eliminar imagen
+    public SearchResult(long id, String name) {
         this.name = name;
-        this.image = image;
         this.id = id;
     }
 
     protected SearchResult(Parcel in) {
-        id = in.readInt();
+        id = in.readLong();
         name = in.readString();
-        image = in.readString();
     }
 
     public static final Creator<SearchResult> CREATOR = new Creator<SearchResult>() {
@@ -41,19 +39,11 @@ public class SearchResult implements Parcelable {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -64,8 +54,7 @@ public class SearchResult implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
+        dest.writeLong(id);
         dest.writeString(name);
-        dest.writeString(image);
     }
 }

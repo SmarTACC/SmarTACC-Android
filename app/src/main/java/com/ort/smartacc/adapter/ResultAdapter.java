@@ -58,7 +58,7 @@ public class ResultAdapter extends ArrayAdapter<SearchResult> {
         //Cargo el TextView del nombre y el ImageView (la foto)
         SearchResult result = results[position];
         holder.lblRecipeName.setText(result.getName());
-        Picasso.with(this.context).load(Util.SERVER_URL + "celiaquia/" + result.getImage()).fit().into(holder.imgRecipeImage);
+        Picasso.with(this.context).load(Util.IMAGES_URL + result.getId() + ".jpg").fit().into(holder.imgRecipeImage);
         holder.imgRecipeImage.setContentDescription(result.getName());
 
         return convertView;

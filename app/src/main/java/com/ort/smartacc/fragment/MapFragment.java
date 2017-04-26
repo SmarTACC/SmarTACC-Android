@@ -2,12 +2,9 @@ package com.ort.smartacc.fragment;
 
 import android.app.Activity;
 import android.content.res.Resources;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,17 +20,26 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.ort.smartacc.MultiSpinner;
 import com.ort.smartacc.R;
-import com.ort.smartacc.Util;
-import com.ort.smartacc.db.SQLiteHelper;
+import com.ort.smartacc.data.PlacesAgent;
+import com.ort.smartacc.data.model.Category;
+import com.ort.smartacc.data.model.Place;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MapFragment extends Fragment {
-    List<String> selectedCategories = new ArrayList<>();
+
     GoogleMap googleMap;
     View pgrMap;
+
+    PlacesAgent placesAgent;
+
+    Map<Long, String> categoriesNames;
+    Map<String, Long> categoriesIds;
+    Map<String, Boolean> selectedCategories;
 
     public MapFragment() {
         // Required empty public constructor
@@ -45,6 +51,9 @@ public class MapFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_map, container, false);
 
         pgrMap = view.findViewById(R.id.pgrMap);
+
+        placesAgent = new PlacesAgent(getContext());
+
         fillSpinner((MultiSpinner) view.findViewById(R.id.sprMap));
 
         SupportMapFragment mapFragment = ((SupportMapFragment) getChildFragmentManager()
@@ -64,36 +73,30 @@ public class MapFragment extends Fragment {
     }
 
     void fillSpinner(MultiSpinner spinner){
-        List<String> categories = new ArrayList<>();
+        List<Category> categories = placesAgent.getCategories();
+        List<String> categoriesNamesList = new ArrayList<>();
 
-        SQLiteDatabase db = new SQLiteHelper(getActivity(), Util.DB_VERSION).getReadableDatabase();
+        categoriesNames = new HashMap<>();
+        categoriesIds = new HashMap<>();
+        selectedCategories = new HashMap<>();
 
-        //Hago el query y lleno la lista de categorias
-        Cursor c = db.rawQuery("SELECT IDCategory,name FROM categories ORDER BY name", null);
-
-        for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
-            categories.add(c.getString(1));
+        for(Category category:categories) {
+            categoriesNamesList.add(category.name);
+            categoriesNames.put(category.id, category.name);
+            categoriesIds.put(category.name, category.id);
+            selectedCategories.put(category.name, true);
         }
-        c.close();
 
-        spinner.setItems(categories, "Todos las categorias", "Filtrar por categoria", true, new MultiSpinner.MultiSpinnerListener() {
+        //TODO arreglar multispinner para que funcione con tables
+        spinner.setItems(categoriesNamesList, "Todos las categorias", "Filtrar por categoria", true, new MultiSpinner.MultiSpinnerListener() {
             @Override
             public void onItemsSelected(List<String> items, boolean[] selected) {
-                marcarSelectos(selectedCategories, items, selected);
+                for (int i = 0; i < selected.length; i++) {
+                    selectedCategories.put(items.get(i), selected[i]);
+                }
                 fillMap();
             }
         });
-        selectedCategories.addAll(categories);
-    }
-
-    void marcarSelectos(List<String> listSelectos, List<String> listTotal, boolean[] selectos){
-        listSelectos.clear();
-        for (int i = 0; i<selectos.length; i++)
-        {
-            if(selectos[i]) {
-                listSelectos.add(listTotal.get(i));
-            }
-        }
     }
 
     void fillMap(){
@@ -101,7 +104,7 @@ public class MapFragment extends Fragment {
         new MapFillAsyncTask().execute();
     }
 
-    class MapFillAsyncTask extends AsyncTask<Void, Void, Cursor> {
+    class MapFillAsyncTask extends AsyncTask<Void, Void, List<Place>> {
 
         @Override
         protected void onPreExecute() {
@@ -109,31 +112,32 @@ public class MapFragment extends Fragment {
         }
 
         @Override
-        protected Cursor doInBackground(Void... params) {
-            SQLiteDatabase db = new SQLiteHelper(getActivity(), Util.DB_VERSION).getReadableDatabase();
-            StringBuilder queryCategories = new StringBuilder();
-            for(int i = 0; i < selectedCategories.size(); i++){
-                if(i!=0){
-                    queryCategories.append(",");
+        protected List<Place> doInBackground(Void... params) {
+            List<Long> selectedCategoriesIds = new ArrayList<>();
+
+            for(String key:selectedCategories.keySet()) {
+                if(selectedCategories.get(key)) {
+                    selectedCategoriesIds.add(categoriesIds.get(key));
                 }
-                queryCategories.append("'").append(selectedCategories.get(i)).append("'");
             }
 
-            return db.rawQuery("SELECT lat, lon, lugares.name AS name, categories.name AS catName, address, description FROM lugares INNER JOIN categories ON lugares.IDCategory=categories.IDCategory WHERE categories.name IN("+queryCategories.toString()+")", null);
+            return placesAgent.getPlacesByCategories(selectedCategoriesIds);
         }
-        @Override
-        protected void onPostExecute(Cursor c) {
-            while(c.moveToNext()){
 
+        @Override
+        protected void onPostExecute(List<Place> places) {
+
+            for(Place place:places) {
                 MarkerOptions marker = new MarkerOptions()
-                        .position(new LatLng(c.getDouble(c.getColumnIndex("lat")), c.getDouble(c.getColumnIndex("lon"))))
-                        .title(c.getString(c.getColumnIndex("name")))
-                        .snippet(c.getString(c.getColumnIndex("address")) + "\n" + c.getString(c.getColumnIndex("description")));
+                        .position(new LatLng(place.lat, place.lon))
+                        .title(place.name)
+                        .snippet(place.address + "\n" + place.description);
 
                 try {
+                    // TODO que las imagenes tengan de nombre id en vez de nombres, asi nos evitamos "categoriesNames"
                     int id = getContext().getResources().getIdentifier(
                             Normalizer.normalize(
-                                    c.getString(c.getColumnIndex("catName")).toLowerCase(),
+                                    categoriesNames.get(place.category_id).toLowerCase(),
                                     Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", ""),
                             "drawable",
                             getContext().getPackageName());
@@ -149,7 +153,6 @@ public class MapFragment extends Fragment {
             }
 
             pgrMap.setVisibility(View.GONE);
-            c.close();
         }
     }
 

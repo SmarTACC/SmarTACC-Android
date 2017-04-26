@@ -36,17 +36,17 @@ public class RecetarioAdapter extends ArrayAdapter<SearchResult> implements Sect
         this.lblCurrentSection = lblCurrentSection;
         this.results = results;
         this.context = context;
-        alphaIndexer = new HashMap<String,Integer>();
+        alphaIndexer = new HashMap<>();
         int size = results.length;
 
         //Cargo alphaIndexer para que contenga todas las iniciales de los nombres de las recetas
         //(si ya tiene una letra, no la agrega de nuevo)
-        ArrayList<String> tempSections = new ArrayList<String>();
+        ArrayList<String> tempSections = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             String nombreReceta = results[i].getName();
             String inicialReceta = nombreReceta.substring(0, 1);
             inicialReceta = inicialReceta.toUpperCase();
-            if(!tempSections.contains((String) inicialReceta)) {
+            if(!tempSections.contains(inicialReceta)) {
                 //Se suma esto porque los headers cuentan como un elemento. Esto quiere decir que
                 //si el primer elemento con una letra está en la posición 1, el header estará en
                 //dicha posición.
@@ -130,7 +130,7 @@ public class RecetarioAdapter extends ArrayAdapter<SearchResult> implements Sect
         SearchResult result = results[position];
         holder.lblRecipeName.setText(result.getName());
         holder.lblRecipeName.setGravity(Gravity.CENTER_VERTICAL);
-        Picasso.with(this.context).load(Util.SERVER_URL + "celiaquia/" + result.getImage()).fit().into(holder.imgRecipeImage);
+        Picasso.with(this.context).load(Util.IMAGES_URL + result.getId() + ".jpg").fit().into(holder.imgRecipeImage);
         holder.imgRecipeImage.setContentDescription(result.getName());
 
         return convertView;

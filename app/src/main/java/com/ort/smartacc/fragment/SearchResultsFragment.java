@@ -73,6 +73,6 @@ public class SearchResultsFragment extends Fragment {
     }
 
     public interface OnRecetaSelectedCallback{
-        void onRecetaSelected(int id);
+        void onRecetaSelected(long id);
     }
 }

@@ -8,8 +8,8 @@ android {
         applicationId "com.ort.smartacc"
         minSdkVersion 10
         targetSdkVersion 24
-        versionCode 11
-        versionName "2.3.1"
+        versionCode 12
+        versionName "3.0.0"
     }
     buildTypes {
         release {
