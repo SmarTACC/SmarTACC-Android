@@ -6,4 +6,5 @@ public class Recipe extends Table {
     public long preparation_time;
     public long calories;
     public double portions;
+    public String youtube_url;
 }

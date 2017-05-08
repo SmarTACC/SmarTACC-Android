@@ -57,6 +57,10 @@
             android:label="@string/title_activity_sugerencias"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".activity.VideoActivity"
+            android:label="VideoListo"
+            android:screenOrientation="portrait"/>
+
         <provider
             android:name=".data.provider.Provider"
             android:authorities="com.ort.smartacc.provider"

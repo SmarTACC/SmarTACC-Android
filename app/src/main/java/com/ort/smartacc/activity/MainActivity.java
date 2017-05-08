@@ -37,7 +37,7 @@ import im.delight.apprater.AppRater;
 public class MainActivity extends AppCompatActivity
         implements SearchFragment.OnSearchInteractionCallback {
 
-    private static final String SERVICE_PREF = "service_pref";
+    private static final String SERVICE_PREF = "service_preference";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.loading);
 
         SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
-        Log.e("Main", preferences.getBoolean(SERVICE_PREF, false)+"");
+        //Log.e("Main", preferences.getBoolean(SERVICE_PREF, false)+"");
         if(!preferences.getBoolean(SERVICE_PREF, false)) {
             LocalBroadcastManager.getInstance(this).registerReceiver(
                     new ServiceReadyReceiver(),

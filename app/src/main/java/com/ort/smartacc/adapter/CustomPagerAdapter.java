@@ -9,10 +9,12 @@ import com.ort.smartacc.fragment.ErrorFragment;
 import com.ort.smartacc.fragment.MapFragment;
 import com.ort.smartacc.fragment.RecetarioFragment;
 import com.ort.smartacc.fragment.SearchFragment;
+import com.ort.smartacc.fragment.RecetarioVideoListoFragment;
+import com.ort.smartacc.fragment.VideoFragment;
 
 public class CustomPagerAdapter extends FragmentStatePagerAdapter {
-    //Los tabs van a ser: recetas, mapa, busqueda, top
-    private final String[] titles = {"RECETAS", "MAPA", "BUSQUEDA", /*"TOP 10"*/};
+    //Los tabs van a ser: videos, recetas, mapa, busqueda, top
+    private final String[] titles = {"VIDEOS LISTO", "RECETAS", "MAPA", "BUSQUEDA", /*"TOP 10"*/};
 
     public CustomPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -33,6 +35,9 @@ public class CustomPagerAdapter extends FragmentStatePagerAdapter {
         Fragment fragment = new ErrorFragment();
         Bundle args = new Bundle();
         switch (titles[position]){
+            case "VIDEOS LISTO":
+                fragment = new RecetarioVideoListoFragment();
+                break;
             case "RECETAS":
                 fragment = new RecetarioFragment();
                 break;
