@@ -13,7 +13,8 @@ public class RecipesManager extends TableManager<Recipe> {
             new Field("description", Field.TYPE_TEXT),
             new Field("preparation_time", Field.TYPE_INTEGER),
             new Field("calories", Field.TYPE_INTEGER),
-            new Field("portions", Field.TYPE_REAL)
+            new Field("portions", Field.TYPE_REAL),
+            new Field("youtube_url", Field.TYPE_TEXT)
     };
 
     public RecipesManager() {
@@ -30,6 +31,7 @@ public class RecipesManager extends TableManager<Recipe> {
         recipe.preparation_time = safeGetLong(cursor, "preparation_time");
         recipe.calories = safeGetLong(cursor, "calories");
         recipe.portions = safeGetDouble(cursor, "portions");
+        recipe.youtube_url = safeGetString(cursor, "youtube_url");
 
         return recipe;
     }

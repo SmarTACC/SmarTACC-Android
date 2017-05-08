@@ -8,8 +8,8 @@ android {
         applicationId "com.ort.smartacc"
         minSdkVersion 10
         targetSdkVersion 24
-        versionCode 12
-        versionName "3.0.0"
+        versionCode 15
+        versionName "3.1.2"
     }
     buildTypes {
         release {
@@ -28,4 +28,5 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:design:24.2.0'
     compile 'com.google.code.gson:gson:2.6.2'
+    compile files('libs/YouTubeAndroidPlayerApi.jar')
 }

@@ -45,7 +45,17 @@ public class RecipesAgent {
     }
 
     public List<Recipe> getRecipes() {
-        return recipesManager.getAll(contentResolver, "name");
+        return  recipesManager.search(contentResolver,"youtube_url == ? ORDER BY name", new String [] {""});
+    }
+
+    public List<Recipe> getRecipesWithVideo(){
+        return  recipesManager.search(contentResolver,"youtube_url != ? ORDER BY name", new String [] {""});
+    }
+
+    public String getVideoURLForVideo(long id){
+        Recipe recipe = recipesManager.getById(contentResolver,id);
+
+        return recipe.youtube_url;
     }
 
     public Recipe getRecipeById(long id) {

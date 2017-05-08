@@ -9,7 +9,7 @@ import com.ort.smartacc.data.managers.TableManager;
 public class SQLiteHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "smartacc";
-    private static final int DB_VERSION = 13;
+    private static final int DB_VERSION = 14;
 
     Context context;
 
@@ -28,6 +28,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         if(oldVersion < 13) {
             clearFirstVersionDatabase(database);
+        } else {
+            if(oldVersion < 14) {
+                // Se agregaron los videos en la tabla recipes
+                database.execSQL("DROP TABLE IF EXISTS recipes");
+            }
         }
 
         createTables(database);
